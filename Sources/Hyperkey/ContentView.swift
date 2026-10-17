@@ -36,10 +36,19 @@ struct ContentView: View {
             Divider()
             Toggle("Launch at Login", isOn: $store.launchAtLogin)
             Toggle("Hide Menu Bar Icon", isOn: $store.hideMenuBarIcon)
+            supportLink
         }
         .padding(20)
         .frame(minWidth: 423, maxWidth: 423, minHeight: 516, maxHeight: .infinity)
         .onReceive(trustTimer) { _ in trusted = AXIsProcessTrusted() }
+    }
+
+    private var supportLink: some View {
+        HStack(spacing: 4) {
+            Text("Support me:").foregroundStyle(.secondary)
+            Link("ko-fi.com/sugrarin", destination: URL(string: "https://ko-fi.com/sugrarin")!)
+        }
+        .font(.caption)
     }
 
     // Shown until Accessibility access is granted; the button opens the right Settings pane.
